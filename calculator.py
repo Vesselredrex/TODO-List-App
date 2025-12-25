@@ -1,21 +1,21 @@
 import os
 import json
 
-TODO_FiLE = 'todo_list.json'
+TODO_FILE = 'todo_list.json'
 
 def load_todo_list():
-    if os.path.exists(TODO_FiLE):
-        with open(TODO_FiLE, 'r') as file:
+    if os.path.exists(TODO_FILE):
+        with open(TODO_FILE, 'r') as file:
             return json.load(file)
-    return [] 
+    return {}
 
 def save_todo_list(todo_list):
-    with open(TODO_FiLE, 'w') as file:
+    with open(TODO_FILE, 'w') as file: 
         json.dump(todo_list, file)
 
 def add_task(todo_list, task):
    task_id = str(len(todo_list) + 1)
-   todo_list(task_id) = task
+   todo_list[task_id] = task
    save_todo_list(todo_list)
    print(f"Task added with ID: {task_id}")
 
@@ -41,3 +41,10 @@ def main():
         elif choice == '2':
             task_id = input("Enter the task ID to delete: ")
             delete_task(todo_list, task_id)
+        elif choice == '3':
+            break
+        else:
+            print("Invalid option. Please try again.")
+        
+if __name__ == "__main__":
+    main()
